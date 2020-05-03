@@ -119,18 +119,9 @@ for(i in seq_len(length(numerical_features))){
 }
 
 
-ImmoData <- Dataset_Raw
+ImmoData <- Dataset_Raw %>%
+  mutate(Timestamp = Sys.time())
 write_rds(ImmoData, paste0(getwd(), "/Datasets/ImmoScout/ImmoData.rds"))
-
-
-
-
-
-
-
-
-
-
 
 
 
