@@ -48,6 +48,8 @@ data_test$pred <- predict(model1, newdata = data_test)
 ggplot(data_test, aes(x = date, y = aim)) +
   geom_point() +
   geom_line(data = data_test, aes(x = date, y = pred), col = "red")
+ggplot(data_test, aes(x = aim, y = pred)) +
+  geom_point()
 rmse(data_test$aim, data_test$pred)
 summary(model1)$r.squared
 
@@ -59,6 +61,8 @@ data_test$pred <- predict(model2, newdata = data_test)
 ggplot(data_test, aes(x = date, y = aim)) +
   geom_point() +
   geom_line(data = data_test, aes(x = date, y = pred), col = "red")
+ggplot(data_test, aes(x = aim, y = pred)) +
+  geom_point()
 rmse(data_test$aim, data_test$pred)
 summary(model2)$r.squared
 
@@ -69,10 +73,14 @@ data_test$pred <- predict(model3, newdata = data_test)
 ggplot(data_test, aes(x = date, y = aim)) +
   geom_point() +
   geom_line(data = data_test, aes(x = date, y = pred), col = "red")
+ggplot(data_test, aes(x = aim, y = pred)) +
+  geom_point()
 rmse(data_test$aim, data_test$pred)
 summary(model3)$r.squared
 
 
 
-
+# CONCLUSION
+#
+# Simple LM is good enough for this task
 
