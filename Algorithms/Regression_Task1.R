@@ -28,12 +28,14 @@ DaxPrices_prep %<>%
   rename(aim = adjusted_DAI.DE)
 
 
-# METHOD 1
-# simple linear regression ----
+# Train/test set split ----
 data <- DaxPrices_prep
 
-train_sample <- sample(1:nrow(data), size = round(0.8*nrow(data)))
-#train_sample <- 1:round(0.8*nrow(data))
+train_sample <- 1:round(0.8*nrow(data))
+# DON'T USE THIS:
+# train_sample <- sample(1:nrow(data), size = round(0.8*nrow(data)))
+# Never learn from future data in time series machine learning problems
+
 data_train <- data[train_sample,]
 data_test <- data[-train_sample,]
 nrow(data)
@@ -41,8 +43,14 @@ nrow(data_train)
 nrow(data_test)
 
 
+
+# METHOD 1
+# simple linear regression ----
+
 # model with one bad predictor
 model1 <- lm(aim~adjusted_SAP.DE, data = data_train)
+data_train
+
 data_test$pred <- predict(model1, newdata = data_test)
 
 ggplot(data_test, aes(x = date, y = aim)) +
