@@ -126,9 +126,6 @@ ImmoData <- Dataset_Raw %>%
 
 # Attach new ImmoData ----
 ImmoData_old <- read_rds(paste0(getwd(), "/Datasets/ImmoScout/ImmoData.rds"))
-(New_Ids <- setdiff(ImmoData$Id, ImmoData_old$Id))
-ImmoData %<>%
-  filter(Id %in% New_Ids)
 ImmoData_New <- ImmoData_old %>%
   bind_rows(ImmoData)
 write_rds(ImmoData_New, paste0(getwd(), "/Datasets/ImmoScout/ImmoData.rds"))
